@@ -1,11 +1,15 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.10
 
-RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
-    curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
-    apt-get update && \
-    apt-get install libssl-dev libcurl4-openssl-dev && \
-    apt-get install nano iputils-ping unixodbc-dev -y && \
-    ACCEPT_EULA=Y apt-get install msodbcsql17 unixodbc-dev -y
+RUN sudo su
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/prod.list > /etc/apt/sources.list.d/mssql-release.list
+RUN exit
+RUN apt-get update 
+RUN apt-get install libssl-dev libcurl4-openssl-dev 
+RUN apt-get install nano iputils-ping unixodbc-dev -y 
+RUN ACCEPT_EULA=Y apt-get install msodbcsql17 unixodbc-dev -y
+
+
 
 
 
