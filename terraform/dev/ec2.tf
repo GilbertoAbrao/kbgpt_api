@@ -52,7 +52,7 @@ resource "aws_instance" "my_ec2" {
 
     sudo ln -s /etc/nginx/sites-available/${var.route53_subdomain}.${var.route53_domain_name} /etc/nginx/sites-enabled/${var.route53_subdomain}.${var.route53_domain_name}
     sudo service nginx restart
-    sudo apt-get install docker-compose -y
+  
 
     echo "Terraform: Istalando Certbot"
     
